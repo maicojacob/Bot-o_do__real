@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -7,67 +6,283 @@
 <title>Botão do Real</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #eeeeee;
-  text-align: center;
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#111;
+  color:white;
 }
 
-.caixa {
-  margin: 50px 20px;
-  padding: 30px;
-  background: white;
-  border-radius: 20px;
+.app{
+  max-width:500px;
+  margin:auto;
+  min-height:100vh;
+  padding:20px;
 }
 
-h1 {
-  font-size: 30px;
+.topo{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-#valor {
-  font-size: 40px;
-  font-weight: bold;
-  margin: 30px;
+.logo{
+  font-size:24px;
+  font-weight:bold;
 }
 
-button {
-  font-size: 25px;
-  padding: 20px 35px;
-  border: none;
-  border-radius: 20px;
-  background: green;
-  color: white;
+.pontos{
+  background:#222;
+  padding:10px 15px;
+  border-radius:20px;
+}
+
+.card{
+  margin-top:25px;
+  padding:25px;
+  border-radius:25px;
+  background:#222;
+  text-align:center;
+}
+
+h1{
+  margin-top:5px;
+}
+
+.frase{
+  min-height:100px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  line-height:1.4;
+  margin:20px 0;
+}
+
+.botao{
+  width:100%;
+  padding:20px;
+  border:0;
+  border-radius:18px;
+  font-size:22px;
+  font-weight:bold;
+  background:#20c56a;
+  color:white;
+}
+
+.botao:active{
+  transform:scale(.97);
+}
+
+.info{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:15px;
+}
+
+.caixinha{
+  background:#222;
+  padding:15px;
+  border-radius:15px;
+  text-align:center;
+}
+
+.menu{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:15px;
+}
+
+.menu button{
+  padding:15px;
+  border:0;
+  border-radius:15px;
+  background:#333;
+  color:white;
+  font-size:16px;
+}
+
+.pequeno{
+  margin-top:20px;
+  font-size:13px;
+  color:#aaa;
 }
 </style>
 </head>
 
 <body>
 
-<div class="caixa">
+<div class="app">
 
-<h1>💰 Botão do Real</h1>
+<div class="topo">
+<div class="logo">💰 Botão do Real</div>
+<div class="pontos">⭐ <span id="xp">0</span></div>
+</div>
 
-<p>Clique para ganhar R$ 1,00</p>
+<div class="card">
 
-<div id="valor">R$ 0,00</div>
+<h1>😂 Frase do Dia</h1>
 
-<button onclick="adicionar()">+ R$ 1</button>
+<div class="frase" id="frase">
+Clique no botão para descobrir sua frase!
+</div>
+
+<button class="botao" onclick="novaFrase()">
+💵 GANHAR R$ 1
+</button>
+
+</div>
+
+<div class="info">
+
+<div class="caixinha">
+🔥 Sequência<br>
+<b id="sequencia">0</b> dias
+</div>
+
+<div class="caixinha">
+🎯 Frases<br>
+<b id="contador">0</b>
+</div>
+
+</div>
+
+<div class="menu">
+
+<button onclick="favoritar()">❤️ Favoritar</button>
+
+<button onclick="compartilhar()">📤 Compartilhar</button>
+
+<button onclick="missao()">🎯 Missão</button>
+
+<button onclick="sobre()">ℹ️ Sobre</button>
+
+</div>
+
+<div class="pequeno">
+Volte amanhã para continuar sua sequência 🔥
+</div>
 
 </div>
 
 <script>
 
-let dinheiro = 0;
+const frases = [
 
-function adicionar() {
-  dinheiro = dinheiro + 1;
+"Meu salário entrou e já está procurando a saída. 😂",
 
-  document.getElementById("valor").innerHTML =
-  "R$ " + dinheiro + ",00";
+"Eu ia economizar, mas encontrei uma promoção. 🤣",
+
+"Hoje eu vou dormir cedo. Eu, todos os dias. 😴",
+
+"Não estou atrasado. Estou chegando no meu horário alternativo. 😂",
+
+"Minha conta bancária está fazendo dieta: só tem saldo leve. 💸",
+
+"Trabalhar eu trabalho. O problema é gostar. 😂",
+
+"Se dinheiro não traz felicidade, me dê o dinheiro que eu testo. 🤣",
+
+"Meu despertador toca e eu finjo que não conheço. 😴",
+
+"Eu tenho planos. O problema é que meu sofá também tem. 😂",
+
+"Segunda-feira deveria começar depois do almoço. 😅",
+
+"Eu não sou preguiçoso. Estou economizando energia. 🔋",
+
+"Minha motivação está de férias. 😂",
+
+"Se fosse fácil, todo mundo estaria fazendo. 😎",
+
+"Hoje eu estou igual Wi-Fi ruim: sem conexão com a realidade. 🤣",
+
+"Meu cartão de crédito sabe mais sobre mim do que minha família. 😂",
+
+"Eu só queria cinco minutinhos... três horas depois. 😴",
+
+"Não tenho sorte no amor, mas tenho boleto. 💸",
+
+"Minha dieta começa amanhã. De novo. 😂",
+
+"Eu não discuto. Apenas explico por que estou certo. 😎",
+
+"Vida adulta: pagar boleto e fingir que está tudo bem. 😂"
+
+];
+
+let xp = Number(localStorage.getItem("xp")) || 0;
+let contador = Number(localStorage.getItem("contador")) || 0;
+let sequencia = Number(localStorage.getItem("sequencia")) || 0;
+
+document.getElementById("xp").innerText = xp;
+document.getElementById("contador").innerText = contador;
+document.getElementById("sequencia").innerText = sequencia;
+
+function novaFrase(){
+
+let indice = Math.floor(Math.random()*frases.length);
+
+document.getElementById("frase").innerText = frases[indice];
+
+xp = xp + 1;
+contador = contador + 1;
+
+localStorage.setItem("xp",xp);
+localStorage.setItem("contador",contador);
+
+document.getElementById("xp").innerText = xp;
+document.getElementById("contador").innerText = contador;
+
 }
 
-</script>
+function favoritar(){
 
-</body>
-</html>
+let frase = document.getElementById("frase").innerText;
+
+if(frase.includes("Clique no botão")){
+alert("Primeiro descubra uma frase!");
+return;
+}
+
+localStorage.setItem("favorita",frase);
+
+alert("❤️ Frase favoritada!");
+
+}
+
+function compartilhar(){
+
+let frase = document.getElementById("frase").innerText;
+
+if(frase.includes("Clique no botão")){
+alert("Primeiro descubra uma frase!");
+return;
+}
+
+let texto = frase + "\n\n😂 Botão do Real";
+
+if(navigator.share){
+
+navigator.share({
+title:"Botão do Real",
+text:texto
+});
+
+}else{
+
+navigator.clipboard.writeText(texto);
+
+alert("Frase copiada! Agora você pode enviar para seus amigos.");
+
+}
+
+}
+
+function missao(){
+
+alert("🎯 MISSÃO DO DIA\n\nEntre

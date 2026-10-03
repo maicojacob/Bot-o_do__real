@@ -337,4 +337,292 @@ xp = 0;
 contador = 0;
 sequencia = 0;
 ultimaData = "";
-favor
+favorita = "";
+
+}
+
+}
+
+function salvarDados(){
+
+try{
+
+localStorage.setItem("xp",xp);
+localStorage.setItem("contador",contador);
+localStorage.setItem("sequencia",sequencia);
+localStorage.setItem("ultimaData",ultimaData);
+localStorage.setItem("favorita",favorita);
+
+}catch(e){
+
+console.log("Armazenamento indisponível");
+
+}
+
+}
+
+function dataHoje(){
+
+const d = new Date();
+
+return d.getFullYear() +
+"-" +
+String(d.getMonth()+1).padStart(2,"0") +
+"-" +
+String(d.getDate()).padStart(2,"0");
+
+}
+
+function dataOntem(){
+
+const d = new Date();
+
+d.setDate(d.getDate()-1);
+
+return d.getFullYear() +
+"-" +
+String(d.getMonth()+1).padStart(2,"0") +
+"-" +
+String(d.getDate()).padStart(2,"0");
+
+}
+
+function atualizarTela(){
+
+document.getElementById("xp").innerText = xp;
+
+document.getElementById("contador").innerText = contador;
+
+document.getElementById("sequencia").innerText = sequencia;
+
+atualizarBonus();
+
+}
+
+function atualizarBonus(){
+
+const bonus =
+document.getElementById("bonus");
+
+if(ultimaData === dataHoje()){
+
+bonus.innerText =
+"✅ Bônus de hoje já foi recebido! Volte amanhã 🔥";
+
+}else{
+
+bonus.innerText =
+"🎁 Bônus diário disponível! +5 XP";
+
+}
+
+}
+
+function novaFrase(){
+
+const indice =
+Math.floor(Math.random()*frases.length);
+
+document.getElementById("frase").innerText =
+frases[indice];
+
+contador++;
+
+xp++;
+
+const hoje = dataHoje();
+
+if(ultimaData !== hoje){
+
+if(ultimaData === dataOntem()){
+
+sequencia++;
+
+}else{
+
+sequencia = 1;
+
+}
+
+xp += 5;
+
+ultimaData = hoje;
+
+mostrarMensagem(
+"🎁 +5 XP de bônus! 🔥 Sequência: " +
+sequencia +
+" dia(s)"
+);
+
+}else{
+
+mostrarMensagem(
+"😂 Nova frase! +1 XP"
+);
+
+}
+
+salvarDados();
+
+atualizarTela();
+
+}
+
+function favoritar(){
+
+const frase =
+document.getElementById("frase").innerText;
+
+if(frase.includes("Clique no botão")){
+
+mostrarMensagem(
+"😂 Primeiro descubra uma frase!"
+);
+
+return;
+
+}
+
+favorita = frase;
+
+salvarDados();
+
+mostrarMensagem(
+"❤️ Frase favorita salva!"
+);
+
+}
+
+function compartilhar(){
+
+const frase =
+document.getElementById("frase").innerText;
+
+if(frase.includes("Clique no botão")){
+
+mostrarMensagem(
+"😂 Primeiro descubra uma frase!"
+);
+
+return;
+
+}
+
+const texto =
+frase +
+"\n\n😂 Botão do Real";
+
+if(navigator.share){
+
+navigator.share({
+
+title:"Botão do Real",
+
+text:texto
+
+}).catch(function(){});
+
+}else{
+
+try{
+
+if(navigator.clipboard){
+
+navigator.clipboard.writeText(texto);
+
+mostrarMensagem(
+"📋 Frase copiada!"
+);
+
+}else{
+
+alert(texto);
+
+}
+
+}catch(e){
+
+alert(texto);
+
+}
+
+}
+
+}
+
+function missao(){
+
+const hoje = dataHoje();
+
+if(ultimaData === hoje){
+
+alert(
+"🎯 MISSÃO DO DIA\n\n" +
+"✅ Você já pegou o bônus de hoje!\n\n" +
+"🔥 Volte amanhã para continuar sua sequência."
+);
+
+}else{
+
+alert(
+"🎯 MISSÃO DO DIA\n\n" +
+"Aperte o botão e descubra uma frase.\n\n" +
+"🎁 Você ganhará +5 XP de bônus hoje!\n\n" +
+"🔥 Volte amanhã para manter sua sequência."
+);
+
+}
+
+}
+
+function sobre(){
+
+alert(
+
+"💰 BOTÃO DO REAL\n\n" +
+
+"😂 Frases engraçadas\n" +
+"🔥 Sequência diária\n" +
+"⭐ Sistema de XP\n" +
+"❤️ Favoritos\n" +
+"📤 Compartilhamento\n" +
+"🎯 Missões\n\n" +
+
+"Volte todos os dias para aumentar sua sequência!\n\n" +
+
+"⚠️ O botão é uma brincadeira e não entrega dinheiro real."
+
+);
+
+}
+
+let tempoMensagem;
+
+function mostrarMensagem(texto){
+
+const elemento =
+document.getElementById("mensagem");
+
+elemento.innerText = texto;
+
+elemento.style.display = "block";
+
+clearTimeout(tempoMensagem);
+
+tempoMensagem =
+setTimeout(function(){
+
+elemento.style.display = "none";
+
+},2500);
+
+}
+
+carregarDados();
+
+atualizarTela();
+
+</script>
+
+</body>
+</html>

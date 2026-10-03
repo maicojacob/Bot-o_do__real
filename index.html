@@ -4,176 +4,173 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#111111">
-
 <title>Botão do Real</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#111;
-  color:white;
+margin:0;
+font-family:Arial,sans-serif;
+background:#111;
+color:white;
 }
 
 .app{
-  max-width:500px;
-  margin:auto;
-  min-height:100vh;
-  padding:18px;
+max-width:500px;
+margin:auto;
+min-height:100vh;
+padding:18px;
 }
 
 .topo{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
 }
 
 .logo{
-  font-size:22px;
-  font-weight:bold;
+font-size:22px;
+font-weight:bold;
 }
 
 .pontos{
-  background:#222;
-  padding:10px 14px;
-  border-radius:20px;
-  white-space:nowrap;
+background:#222;
+padding:10px 14px;
+border-radius:20px;
+white-space:nowrap;
 }
 
 .card{
-  margin-top:20px;
-  padding:24px 18px;
-  border-radius:25px;
-  background:#222;
-  text-align:center;
-  box-shadow:0 8px 30px rgba(0,0,0,.3);
+margin-top:20px;
+padding:24px 18px;
+border-radius:25px;
+background:#222;
+text-align:center;
+box-shadow:0 8px 30px rgba(0,0,0,.3);
 }
 
 h1{
-  margin:5px 0;
-  font-size:27px;
+margin:5px 0;
+font-size:27px;
 }
 
 .subtitulo{
-  color:#aaa;
-  font-size:14px;
-  margin-top:8px;
+color:#aaa;
+font-size:14px;
+margin-top:8px;
 }
 
 .frase{
-  min-height:120px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  line-height:1.4;
-  margin:20px 0;
-  padding:10px;
+min-height:120px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+line-height:1.4;
+margin:20px 0;
+padding:10px;
 }
 
 .botao{
-  width:100%;
-  padding:19px;
-  border:0;
-  border-radius:18px;
-  font-size:21px;
-  font-weight:bold;
-  background:#20c56a;
-  color:white;
-  box-shadow:0 5px 0 #15924c;
-  cursor:pointer;
+width:100%;
+padding:19px;
+border:0;
+border-radius:18px;
+font-size:21px;
+font-weight:bold;
+background:#20c56a;
+color:white;
+box-shadow:0 5px 0 #15924c;
+cursor:pointer;
 }
 
 .botao:active{
-  transform:translateY(4px);
-  box-shadow:0 1px 0 #15924c;
+transform:translateY(4px);
+box-shadow:0 1px 0 #15924c;
 }
 
 .info{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:15px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:15px;
 }
 
 .caixinha{
-  background:#222;
-  padding:15px;
-  border-radius:15px;
-  text-align:center;
+background:#222;
+padding:15px;
+border-radius:15px;
+text-align:center;
 }
 
 .caixinha strong{
-  font-size:20px;
+font-size:20px;
 }
 
 .menu{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:15px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:15px;
 }
 
 .menu button{
-  padding:15px 8px;
-  border:0;
-  border-radius:15px;
-  background:#333;
-  color:white;
-  font-size:15px;
-  cursor:pointer;
+padding:15px 8px;
+border:0;
+border-radius:15px;
+background:#333;
+color:white;
+font-size:15px;
+cursor:pointer;
 }
 
 .menu button:active{
-  transform:scale(.97);
+transform:scale(.97);
 }
 
 .bonus{
-  margin-top:15px;
-  padding:15px;
-  border-radius:15px;
-  background:#302700;
-  color:#ffd84d;
-  text-align:center;
-  font-weight:bold;
+margin-top:15px;
+padding:15px;
+border-radius:15px;
+background:#302700;
+color:#ffd84d;
+text-align:center;
+font-weight:bold;
 }
 
 .pequeno{
-  margin-top:20px;
-  font-size:13px;
-  color:#888;
-  text-align:center;
-  line-height:1.5;
+margin-top:20px;
+font-size:13px;
+color:#888;
+text-align:center;
+line-height:1.5;
 }
 
 #mensagem{
-  position:fixed;
-  left:50%;
-  bottom:25px;
-  transform:translateX(-50%);
-  background:#20c56a;
-  color:white;
-  padding:14px 20px;
-  border-radius:30px;
-  font-weight:bold;
-  display:none;
-  z-index:999;
-  box-shadow:0 5px 20px rgba(0,0,0,.4);
-  text-align:center;
-  width:max-content;
-  max-width:90%;
+position:fixed;
+left:50%;
+bottom:25px;
+transform:translateX(-50%);
+background:#20c56a;
+color:white;
+padding:14px 20px;
+border-radius:30px;
+font-weight:bold;
+display:none;
+z-index:999;
+box-shadow:0 5px 20px rgba(0,0,0,.4);
+text-align:center;
+width:max-content;
+max-width:90%;
 }
 
 .rodape{
-  text-align:center;
-  color:#666;
-  font-size:11px;
-  margin-top:25px;
+text-align:center;
+color:#666;
+font-size:11px;
+margin-top:25px;
 }
 </style>
 </head>
@@ -182,58 +179,162 @@ h1{
 
 <div class="app">
 
-  <div class="topo">
-    <div class="logo">💰 Botão do Real</div>
+<div class="topo">
 
-    <div class="pontos">
-      ⭐ <span id="xp">0</span> XP
-    </div>
-  </div>
+<div class="logo">
+💰 Botão do Real
+</div>
 
-  <div class="card">
+<div class="pontos">
+⭐ <span id="xp">0</span> XP
+</div>
 
-    <h1>😂 Frase do Dia</h1>
+</div>
 
-    <div class="subtitulo">
-      Aperte e descubra uma frase para rir
-    </div>
+<div class="card">
 
-    <div class="frase" id="frase">
-      Clique no botão e descubra sua frase! 😂
-    </div>
+<h1>😂 Frase do Dia</h1>
 
-    <button class="botao" onclick="novaFrase()">
-      💵 GANHAR R$ 1
-    </button>
+<div class="subtitulo">
+Aperte e descubra uma frase para rir
+</div>
 
-  </div>
+<div class="frase" id="frase">
+Clique no botão e descubra sua frase! 😂
+</div>
 
-  <div class="bonus" id="bonus">
-    🎁 Bônus diário disponível!
-  </div>
+<button class="botao" onclick="novaFrase()">
+💵 GANHAR R$ 1
+</button>
 
-  <div class="info">
+</div>
 
-    <div class="caixinha">
-      🔥 Sequência<br>
-      <strong><span id="sequencia">0</span></strong> dias
-    </div>
+<div class="bonus" id="bonus">
+🎁 Bônus diário disponível!
+</div>
 
-    <div class="caixinha">
-      🎯 Frases<br>
-      <strong><span id="contador">0</span></strong>
-    </div>
+<div class="info">
 
-  </div>
+<div class="caixinha">
+🔥 Sequência<br>
+<strong><span id="sequencia">0</span></strong> dias
+</div>
 
-  <div class="menu">
+<div class="caixinha">
+🎯 Frases<br>
+<strong><span id="contador">0</span></strong>
+</div>
 
-    <button onclick="favoritar()">
-      ❤️ Favoritar
-    </button>
+</div>
 
-    <button onclick="compartilhar()">
-      📤 Compartilhar
-    </button>
+<div class="menu">
 
-   
+<button onclick="favoritar()">
+❤️ Favoritar
+</button>
+
+<button onclick="compartilhar()">
+📤 Compartilhar
+</button>
+
+<button onclick="missao()">
+🎯 Missão
+</button>
+
+<button onclick="sobre()">
+ℹ️ Sobre
+</button>
+
+</div>
+
+<div class="pequeno">
+🔥 Volte amanhã para ganhar seu bônus diário e aumentar sua sequência!
+</div>
+
+<div class="rodape">
+Botão do Real © 2026
+</div>
+
+</div>
+
+<div id="mensagem"></div>
+
+<script>
+
+const frases = [
+
+"Meu salário entrou e já está procurando a saída. 😂",
+"Eu ia economizar, mas encontrei uma promoção. 🤣",
+"Hoje eu vou dormir cedo. Eu, todos os dias. 😴",
+"Não estou atrasado. Estou chegando no meu horário alternativo. 😂",
+"Minha conta bancária está fazendo dieta: só tem saldo leve. 💸",
+"Trabalhar eu trabalho. O problema é gostar. 😂",
+"Se dinheiro não traz felicidade, me dê o dinheiro que eu testo. 🤣",
+"Meu despertador toca e eu finjo que não conheço. 😴",
+"Eu tenho planos. O problema é que meu sofá também tem. 😂",
+"Segunda-feira deveria começar depois do almoço. 😅",
+"Eu não sou preguiçoso. Estou economizando energia. 🔋",
+"Minha motivação está de férias. 😂",
+"Se fosse fácil, todo mundo estaria fazendo. 😎",
+"Hoje eu estou igual Wi-Fi ruim: sem conexão com a realidade. 🤣",
+"Meu cartão de crédito sabe mais sobre mim do que minha família. 😂",
+"Eu só queria cinco minutinhos... três horas depois. 😴",
+"Não tenho sorte no amor, mas tenho boleto. 💸",
+"Minha dieta começa amanhã. De novo. 😂",
+"Eu não discuto. Apenas explico por que estou certo. 😎",
+"Vida adulta: pagar boleto e fingir que está tudo bem. 😂",
+"Meu banco me mandou uma notificação. Até ele sente minha falta. 😂",
+"Eu queria ficar rico, mas o dinheiro não colabora. 💸",
+"Minha cama tem um campo magnético muito forte. 😴",
+"Hoje eu acordei disposto. Depois passou. 😂",
+"Eu não preciso de terapia, preciso ganhar na loteria. 🤣",
+"Meu dinheiro é igual sabonete: quando vejo, já foi. 😂",
+"Se preguiça fosse profissão, eu estaria trabalhando em casa. 😴",
+"Meu problema não é gastar. É ter pouco para gastar. 😂",
+"Eu faço planos financeiros. O mercado faz outros. 💸",
+"Minha carteira está tão vazia que está ecoando. 🤣",
+"Eu ia fazer exercício, mas pensei melhor. 😂",
+"Meu celular tem mais bateria que eu. 🔋",
+"Não estou com fome. Só estou pensando em comida. 😂",
+"Adulto é uma criança com boletos. 💸",
+"Eu não ronco. Meu corpo está apenas testando o motor. 🤣",
+"Hoje eu estou 100% focado... em ir embora. 😂",
+"Minha paciência está carregando. 1%. 😅",
+"Eu não cheguei atrasado. O relógio que adiantou. 😂",
+"Se dormir fosse esporte, eu seria campeão. 🏆",
+"Meu futuro depende de mim. Por isso estou preocupado. 🤣",
+"Eu queria férias das férias. 😂",
+"Minha motivação pediu demissão sem aviso prévio. 😅",
+"Quando dizem 'é rapidinho', eu já sei que perdi a tarde. 😂",
+"Eu não sou indeciso. Talvez. 🤣",
+"Minha vida financeira é uma montanha-russa sem cinto. 💸",
+"Eu tenho memória excelente. Só esqueci onde coloquei. 😂",
+"Hoje eu estou igual impressora: sem vontade de trabalhar. 🤣",
+"Meu despertador é meu maior inimigo. 😴",
+"Eu queria ser produtivo, mas a internet tinha outros planos. 😂"
+
+];
+
+let xp = 0;
+let contador = 0;
+let sequencia = 0;
+let ultimaData = "";
+let favorita = "";
+
+function carregarDados(){
+
+try{
+
+xp = Number(localStorage.getItem("xp")) || 0;
+contador = Number(localStorage.getItem("contador")) || 0;
+sequencia = Number(localStorage.getItem("sequencia")) || 0;
+ultimaData = localStorage.getItem("ultimaData") || "";
+favorita = localStorage.getItem("favorita") || "";
+
+}catch(e){
+
+xp = 0;
+contador = 0;
+sequencia = 0;
+ultimaData = "";
+favor
